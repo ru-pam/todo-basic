@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import Nav from '/components/Nav'
 import Input from "../components/Input.jsx";
+import Task from "../components/Task.jsx";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [task, setTask] = useState("")
   return (
     <>
       <Nav/>
-      <Input/>
+      <Input task={task} setTask={setTask} />
+      <Task task={task} setTask={setTask} />
     </>
   )
 }
