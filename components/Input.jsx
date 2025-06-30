@@ -59,7 +59,7 @@ function Input(props) {
       </form>
     </div>
       <ul className={"!mt-5 flex justify-center text-2xl text-[#E3DE61]"}>
-      <Task taskList={taskList} />
+      <Task taskList={taskList} setTaskList={setTaskList} />
       </ul>
     </>
   );
