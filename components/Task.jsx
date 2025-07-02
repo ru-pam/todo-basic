@@ -1,20 +1,20 @@
 import React from "react";
-//add completed task section
+//fix the bug in checkbox in completed task section (checkbox should be checked)
 function Task(props) {
-  const { taskList, setTaskList } = props;
-  const handleDeleteTask = (index) => {
-    const updatedList = taskList.filter((_, i) => i !== index);
-    setTaskList(updatedList);
-  };
+  const { taskList, setTaskList, handleDeleteTask, handleChange, completedList, setCompletedList } = props;
   return (
     <div>
       {taskList.length > 0 ? (
         taskList.map((task, index) => (
-          <li key={index} className={"flex gap-2 items-center justify-between"}>
+          <li
+            key={index}
+            onChange={() => handleChange(taskList, index, setTaskList, completedList, setCompletedList)}
+            className={"flex gap-2 items-center justify-between"}
+          >
             <input type="checkbox" className={"size-[20px]"} />
             {task}
             <button
-              onClick={() => handleDeleteTask(index)}
+              onClick={() => handleDeleteTask(index, taskList, setTaskList)}
               type={"button"}
               className={
                 "bg-[#E3DE61] text-sm !p-1 rounded-lg cursor-pointer text-black"
