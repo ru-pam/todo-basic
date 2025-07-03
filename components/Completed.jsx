@@ -1,5 +1,3 @@
-import React from "react";
-
 const Completed = (props) => {
   const {
     taskList,
@@ -16,10 +14,22 @@ const Completed = (props) => {
           <li
             key={index}
             defaultChecked={true}
-            onChange={() => handleChange(completedList, index, setCompletedList, taskList, setTaskList)}
             className={"flex gap-2 items-center justify-between"}
           >
-            <input type="checkbox" className={"size-[20px]"} />
+            <input
+              type="checkbox"
+              checked={true}
+              onChange={() =>
+                handleChange(
+                  completedList,
+                  index,
+                  setCompletedList,
+                  taskList,
+                  setTaskList
+                )
+              }
+              className={"size-[20px]"}
+            />
             {completed}
             <button
               onClick={() =>

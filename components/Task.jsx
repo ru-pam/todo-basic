@@ -1,17 +1,17 @@
-import React from "react";
 //fix the bug in checkbox in completed task section (checkbox should be checked)
 function Task(props) {
-  const { taskList, setTaskList, handleDeleteTask, handleChange, completedList, setCompletedList } = props;
+  const { taskList, setTaskList, handleDeleteTask, handleChange, completedList, setCompletedList, checked } = props;
   return (
     <div>
       {taskList.length > 0 ? (
         taskList.map((task, index) => (
           <li
             key={index}
-            onChange={() => handleChange(taskList, index, setTaskList, completedList, setCompletedList)}
             className={"flex gap-2 items-center justify-between"}
           >
-            <input type="checkbox" className={"size-[20px]"} />
+            <input type="checkbox"
+                   checked={false}
+                   onChange={() => handleChange(taskList, index, setTaskList, completedList, setCompletedList)} className={"size-[20px]"} />
             {task}
             <button
               onClick={() => handleDeleteTask(index, taskList, setTaskList)}

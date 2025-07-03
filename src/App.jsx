@@ -7,7 +7,7 @@ import Completed from "../components/Completed.jsx";
 function App() {
   const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
-  const [completedList, setCompletedList] = useState(["task"]);
+  const [completedList, setCompletedList] = useState([]);
   const handleDeleteTask = (index, list, setList) => {
     const updatedList = list.filter((_, i) => i !== index);
     setList(updatedList);
