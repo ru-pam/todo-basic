@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Nav from "/components/Nav";
 import Input from "../components/Input.jsx";
 import Task from "../components/Task.jsx";
@@ -6,8 +6,20 @@ import Completed from "../components/Completed.jsx";
 
 function App() {
   const [task, setTask] = useState("");
-  const [taskList, setTaskList] = useState([]);
-  const [completedList, setCompletedList] = useState([]);
+  const [taskList, setTaskList] = useState(() => {
+    const stored = localStorage.getItem("taskList");
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [completedList, setCompletedList] = useState(() => {
+    const stored = localStorage.getItem("completedList");
+    return stored ? JSON.parse(stored) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("completedList", JSON.stringify(completedList));
+  });
+  useEffect(() => {
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+  }, [taskList]);
   const handleDeleteTask = (index, list, setList) => {
     const updatedList = list.filter((_, i) => i !== index);
     setList(updatedList);
@@ -18,7 +30,7 @@ function App() {
     const item = list[index];
     const newList = [...list2, item];
     setList2(newList);
-  }
+  };
   return (
     <>
       <Nav />
